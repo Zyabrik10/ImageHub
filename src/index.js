@@ -6,6 +6,8 @@ const search_form_input = document.querySelector('#search-form input');
 
 const gallery = document.querySelector('.gallery');
 
+const load_more_button = document.querySelector(".load-more");
+
 let page = 1;
 let query = '';
 
@@ -13,7 +15,7 @@ async function addImage() {
     try{
         const response = await fetchImages(query, page);
       
-        const data = response.data;
+        const { data } = response;
       
         const images = data.hits.slice();
       
@@ -32,7 +34,7 @@ async function addImage() {
           Notiflix.Notify.info(
             "We're sorry, but you've reached the end of search results."
           );
-          Notiflix.Notify.info("Thats all");
+          load_more_button.style.display = "none";
         }
       
         page += 1;
@@ -50,23 +52,26 @@ async function searchImage(event) {
 
   const { data } = response;
 
-  Notiflix.Notify.info(`Hooray! We found ${data.totalHits} images.`);
+  
+  const images = data.hits.slice();
+  
+  if (images.length === 0) {
+    Notiflix.Notify.info(
+      'Sorry, there are no images matching your search query. Please try again.'
+      );
+      return;
+  }
+
+    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
   query = input_value;
   page = 1;
 
   if (data.totalHits > 40) {
     page += 1;
+    load_more_button.style.display = 'block';
   }
 
-  const images = data.hits.slice();
-
-  if (images.length === 0) {
-    Notiflix.Notify.info(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  }
 
   gallery.innerHTML = createImageList(images);
 
@@ -81,6 +86,7 @@ async function searchImage(event) {
 }
 
 search_form.addEventListener('submit', searchImage);
+load_more_button.addEventListener('click', addImage);
 // load_more_button.addEventListener('click', addImage.bind(load_more_button));
 
 // const { height: cardHeight } = document

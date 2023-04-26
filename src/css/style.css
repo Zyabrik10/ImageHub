@@ -17,8 +17,11 @@
 
 .flex-container-item img {
   display: block;
-    width: 100%;
-  height: 220px;
+  /* height: 200px; */
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -26,37 +29,135 @@ body {
   padding: 0;
 }
 
+p {
+  margin: 0;
+}
+
 #search-form {
   display: flex;
   justify-content: center;
-  background: blue;
+  background: rgb(24, 8, 114);
   padding: 15px 10px;
+
+  box-shadow: 0 0 2px #000;
 }
 
-.gallery{
-    padding: var(--flex-items-gap);
+.gallery {
+  padding: var(--flex-items-gap);
+  justify-content: center;
 }
 
-.gallery__link{
-    color: currentColor;
-    text-decoration: none;
+@media screen and (max-width: 375px) {
+  .gallery {
+    --flex-items: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gallery {
+    --flex-items: 2;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .gallery {
+    --flex-items: 3;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .gallery {
+    --flex-items: 4;
+  }
+}
+
+.gallery__link {
+  color: currentColor;
+  text-decoration: none;
 }
 
 .gallery__link img{
-    margin: 0 auto;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
 }
 
-.info{
-    display: flex;
-    justify-content: space-between;
-
-    box-shadow: 0 0 3px rgba(100, 100, 100, 0.5);
+@media screen and (min-width: 500px) {
+  .gallery__link img {
+    width: 100%;
+    height: 200px;
+  }
 }
 
-.info-item{
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: center;
+/* @media screen and (max-width: 1000px) {
+  .gallery {
+    --flex-items: 3;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .gallery {
+    --flex-items: 4;
+  }
+} */
+
+.info {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 0 3px rgba(100, 100, 100, 0.5);
+
+  transition-property: box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+.gallery__link:hover .info {
+  box-shadow: 0 0 3px rgba(100, 100, 100, 1);
+}
+
+.search-button {
+  background-image: url('../img/icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 0 20px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.load-more {
+  display: none;
+  margin: 0 auto;
+
+  border: none;
+
+  background: rgba(0, 150, 0, 0.7);
+
+  padding: 10px 20px;
+
+  border-radius: 5px;
+
+  color: #fff;
+
+  margin-bottom: 10px;
+
+  font-size: 20px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.input-group > .form-control {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 300px;
 }
