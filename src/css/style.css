@@ -44,12 +44,12 @@ p {
 
 .gallery {
   padding: var(--flex-items-gap);
-  justify-content: center;
 }
 
 @media screen and (max-width: 375px) {
   .gallery {
     --flex-items: 1;
+    justify-content: center;
   }
 }
 
