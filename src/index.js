@@ -1,12 +1,12 @@
 import { createImageList } from './js/createImageList.js';
 import { fetchImages } from './js/fetchImages.js';
 import { initSliderLightBox } from './js/initSliderLightBox.js';
+import { preventItemsClick } from './js/preventItemsClick.js';
 
 const search_form = document.querySelector('#search-form');
 const search_form_input = document.querySelector('#search-form input');
 
 const gallery_box = document.querySelector('.gallery');
-
 const load_more_button = document.querySelector('.load-more');
 
 let gallery;
@@ -20,17 +20,12 @@ async function addImage() {
     const { data } = response;
 
     gallery_box.innerHTML += createImageList(data.hits);
-    document.querySelectorAll('.gallery__link').forEach(item => {
-      item.addEventListener('click', event => event.preventDefault());
-    });
+    preventItemsClick('.gallery__link');
   
     gallery.refresh();
   
-
     if (data.totalHits <= 40 * (page - 1) + data.hits.length) {
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
+      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
       load_more_button.style.display = 'none';
     }
 
@@ -45,14 +40,12 @@ async function searchImage(event) {
   event.preventDefault();
 
   try{
-    const input_value = search_form_input.value;
+    const input_value = search_form_input.value.trim();
     const response = await fetchImages(input_value);
     const { data } = response;
   
     if (data.hits.length === 0) {
-      Notiflix.Notify.info(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
+      Notiflix.Notify.info('Sorry, there are no images matching your search query. Please try again.');
       return;
     }
   
@@ -67,13 +60,10 @@ async function searchImage(event) {
     }
   
     gallery_box.innerHTML = createImageList(data.hits);
-
-    document.querySelectorAll('.gallery__link').forEach(item => {
-      item.addEventListener('click', event => event.preventDefault());
-    });
   
+    preventItemsClick('.gallery__link');
+
     gallery = initSliderLightBox();
-    
   } catch(error){
     Notiflix.Notify.failure("Oops! Something went wrong");
     console.error(error);
