@@ -3,7 +3,7 @@ export async function fetchImages(value, page = 1){
     key: '35790595-0862ce34bbcdea66fb3b3d261',
     image_type: 'photo',
     orientation: 'horizontal',
-    safesearch: true,
+    safesearch: false,
     q: value,
     page: page,
     per_page: 40
