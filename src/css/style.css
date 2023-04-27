@@ -3,6 +3,19 @@
   --flex-items-gap: 10px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -17,20 +30,8 @@
 
 .flex-container-item img {
   display: block;
-  /* height: 200px; */
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-p {
-  margin: 0;
+  margin: 0 auto;
+  width: 100%;
 }
 
 #search-form {
@@ -42,32 +43,41 @@ p {
   box-shadow: 0 0 2px #000;
 }
 
+.input,
+.search-button{
+  padding: 10px;
+  border: none;
+}
+
 .gallery {
   padding: var(--flex-items-gap);
+  max-width: 300px;
+  margin: 0 auto;
+
+  justify-content: center;
+
+  --flex-items: 1;
 }
 
-@media screen and (max-width: 375px) {
-  .gallery {
-    --flex-items: 1;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .gallery {
+@media screen and (min-width: 600px) {
+  .gallery{
     --flex-items: 2;
+    max-width: 600px;
+    justify-content: flex-start;
   }
 }
 
-@media screen and (max-width: 1000px) {
-  .gallery {
+@media screen and (min-width: 1000px) {
+  .gallery{
     --flex-items: 3;
+    max-width: 1000px;
   }
 }
 
-@media screen and (max-width: 1220px) {
-  .gallery {
+@media screen and (min-width: 1300px) {
+  .gallery{
     --flex-items: 4;
+    max-width: 1350px;
   }
 }
 
@@ -76,30 +86,15 @@ p {
   text-decoration: none;
 }
 
-.gallery__link img{
-  margin: 0 auto;
-  width: 100%;
-  height: auto;
+.gallery__link  img {
+  height: 170px;
 }
 
-@media screen and (min-width: 500px) {
-  .gallery__link img {
-    width: 100%;
+@media screen and (min-width: 1300px){
+  .gallery__link  img{
     height: 200px;
   }
 }
-
-/* @media screen and (max-width: 1000px) {
-  .gallery {
-    --flex-items: 3;
-  }
-}
-
-@media screen and (max-width: 1220px) {
-  .gallery {
-    --flex-items: 4;
-  }
-} */
 
 .info {
   padding: 10px;
@@ -154,10 +149,4 @@ p {
   text-transform: uppercase;
 
   cursor: pointer;
-}
-
-.input-group > .form-control {
-  flex: 0 0 auto;
-  width: 100%;
-  max-width: 300px;
 }
