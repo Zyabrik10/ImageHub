@@ -13,27 +13,33 @@ let gallery;
 
 let page = 1;
 let query = '';
+let reach_end = false;
+let isGalleryEnded = false;
 
 async function addImage() {
   try {
     const response = await fetchImages(query, page);
     const { data } = response;
+    if (!isGalleryEnded) {
+      if (data.totalHits <= 40 * (page - 1) + data.hits.length && reach_end) {
+        if (data.totalHits >= 40)
+          Notiflix.Notify.info(
+            "We're sorry, but you've reached the end of search results."
+          );
+        // load_more_button.style.display = 'none';
+        isGalleryEnded = true;
+        return;
+      }
 
-    const links = createImageList(data.hits);
+      const links = createImageList(data.hits);
 
-    gallery_box.insertAdjacentHTML('beforeend', links);
-    preventItemsClick('.gallery__link');
+      gallery_box.insertAdjacentHTML('beforeend', links);
+      preventItemsClick('.gallery__link');
 
-    gallery.refresh();
+      gallery.refresh();
 
-    if (data.totalHits <= 40 * (page - 1) + data.hits.length) {
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
-      load_more_button.style.display = 'none';
+      page += 1;
     }
-
-    page += 1;
   } catch (error) {
     Notiflix.Notify.failure('Oops! Something went wrong');
     console.error(error);
@@ -58,11 +64,13 @@ async function searchImage(event) {
     Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
     query = input_value;
+    reach_end = false;
+    isGalleryEnded = false;
     page = 1;
 
     if (data.totalHits > 40) {
       page += 1;
-      load_more_button.style.display = 'block';
+      // load_more_button.style.display = 'block';
     }
 
     const links = createImageList(data.hits);
@@ -78,4 +86,13 @@ async function searchImage(event) {
 }
 
 search_form.addEventListener('submit', searchImage);
-load_more_button.addEventListener('click', addImage);
+// load_more_button.addEventListener('click', addImage);
+addEventListener(
+  'scroll',
+  _.throttle(() => {
+    if (window.scrollY + innerHeight >= gallery_box.scrollHeight) {
+      addImage();
+      reach_end = true;
+    } else reach_end = false;
+  }, 500)
+);
