@@ -1,1 +1,0 @@
-// Слайдер для Support Ukrain
