@@ -4,6 +4,28 @@
 @import url("./global.css");
 @import url("./search-form.css");
 @import url("./header.css");
+@import url("./hero-head.css");
 @import url("./hero.css");
 @import url("./images-section.css");
 @import url("./gallery.css");
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--third-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

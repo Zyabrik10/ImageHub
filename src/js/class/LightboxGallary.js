@@ -1,8 +1,7 @@
-import { apiConfig, config } from '../config';
-import { preventItemsClick } from '../preventItemsClick';
-import { fetchImages } from '../utility/api';
+import { apiConfig, config, imageAPI } from '../config';
+import { preventItemsClick } from '../utility/preventItemsClick';
 
-export default class ImageGallary {
+export default class LightboxGallary {
   init(gallerySelector) {
     this.gallerySelector = gallerySelector;
     this.gallery = document.querySelector(this.gallerySelector);
@@ -21,22 +20,24 @@ export default class ImageGallary {
 
   async add() {
     try {
-      const response = await fetchImages({
+      const response = await imageAPI.fetch({
         query: apiConfig.query,
         page: apiConfig.page,
       });
+
       const { data } = response;
+
       if (!config.isGalleryEnded) {
         if (
-          data.totalHits <= 40 * (apiConfig.page - 1) + data.hits.length &&
+          data.totalHits <=
+            apiConfig.per_page * (apiConfig.page - 1) + data.hits.length &&
           config.reach_end
         ) {
-          if (data.totalHits >= 40)
+          if (data.totalHits >= apiConfig.per_page)
             Notiflix.Notify.info(
               "We're sorry, but you've reached the end of search results."
             );
           config.isGalleryEnded = true;
-          return;
         }
 
         const links = this.createImageList(data.hits);
@@ -45,8 +46,6 @@ export default class ImageGallary {
         preventItemsClick('.gallery__link');
 
         this.galleryLightBox.refresh();
-
-        apiConfig.page += 1;
       }
     } catch (error) {
       Notiflix.Notify.failure('Oops! Something went wrong');

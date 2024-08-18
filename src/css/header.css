@@ -27,10 +27,3 @@
         display: flex;
     }
 }
-
-@media screen and (min-width: 768px){
-    
-    .header-nav{
-     display: none;   
-    }
-}
