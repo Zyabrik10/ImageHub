@@ -1,0 +1,12 @@
+:root {
+  --flex-items: 4;
+  --flex-items-gap: 10px;
+  --border-radius: 5px;
+
+  --primary-color: #0C0C0C;
+  --secondary-color: #481E14;
+  --third-color: #9B3922;
+  --fourth-color: #F2613F;
+
+  --light-color: #eee;
+}

@@ -13,9 +13,12 @@ export default class ImageForm {
     this.form.addEventListener('submit', this.onSubmit.bind(this));
   }
 
-  async search() {
+  async search(desire) {
     try {
-      const input_value = this.searchInput.value.trim();
+      let input_value = this.searchInput.value.trim();
+
+      if (input_value === '') input_value = desire;
+
       const response = await fetchImages({
         query: input_value,
       });

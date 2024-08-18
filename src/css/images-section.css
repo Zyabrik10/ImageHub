@@ -1,0 +1,16 @@
+.images-section-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 40px;
+}
+
+@media screen and (min-width: 600px){
+    .images-section-block{
+        flex-direction: row;
+    }
+}
