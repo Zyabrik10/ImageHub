@@ -45,29 +45,6 @@
   }
 }
 
-.info {
-  padding: 10px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  box-shadow: 0 0 3px rgba(100, 100, 100, 0.5);
-
-  transition-property: box-shadow;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-
-  border-bottom-left-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-
-  display: none;
-}
-
-.gallery__link:hover .info {
-  box-shadow: 0 0 3px rgba(100, 100, 100, 1);
-}
-
 .info-item {
   display: flex;
   flex-direction: column;

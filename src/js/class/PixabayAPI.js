@@ -12,6 +12,7 @@ export default class ImageAPI {
     safesearch = false,
     image_type = 'photo',
     orientation = 'horizontal',
+    category = '',
   }) {
     if (!per_page) per_page = apiConfig.per_page;
 
@@ -24,6 +25,7 @@ export default class ImageAPI {
         q: query,
         page,
         per_page,
+        category,
       },
     });
   }

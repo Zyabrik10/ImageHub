@@ -1,17 +1,26 @@
 import { apiConfig, config, imageAPI } from '../config';
-import { preventItemsClick } from '../utility/preventItemsClick';
+import { preventItemsClick } from '../utility';
 
 export default class LightboxGallary {
+  constructor(sliderComponent) {
+    this.sliderComponent = sliderComponent;
+  }
+
+  createImageList(images) {
+    return images
+      .map(image => {
+        return this.sliderComponent(
+          image.webformatURL,
+          image.tags,
+          image.largeImageURL
+        );
+      })
+      .join('\n');
+  }
+
   init(gallerySelector) {
     this.gallerySelector = gallerySelector;
     this.gallery = document.querySelector(this.gallerySelector);
-    this.galleryLightBox = new SimpleLightbox(`${this.gallerySelector} a`, {
-      captionsData: 'alt',
-      captionDelay: 250,
-    });
-  }
-
-  initGalleryBox() {
     this.galleryLightBox = new SimpleLightbox(`${this.gallerySelector} a`, {
       captionsData: 'alt',
       captionDelay: 250,
@@ -51,17 +60,5 @@ export default class LightboxGallary {
       Notiflix.Notify.failure('Oops! Something went wrong');
       console.error(error);
     }
-  }
-
-  createImageList(images) {
-    return images
-      .map(image => {
-        return `
-            <a href="${image.webformatURL}" class="gallery__link flex-container-item">
-                <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" data-source="${image.largeImageURL}" />
-            </a>
-        `;
-      })
-      .join('\n');
   }
 }
