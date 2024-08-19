@@ -26,7 +26,6 @@ const requests = [
   'forest',
   'car',
   'steampunk',
-  'clockpunk',
   'ocean',
   'flower',
   'sunrise',
