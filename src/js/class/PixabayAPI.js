@@ -1,6 +1,6 @@
 import { apiConfig } from '../config/global';
 
-export default class ImageAPI {
+export default class PixabayAPI {
   constructor(API) {
     this.API = API;
   }
