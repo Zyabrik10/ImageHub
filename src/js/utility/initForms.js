@@ -1,3 +1,5 @@
+import searchAndRender from "./searchAndRender.js";
+
 function onSubmit(e) {
   e.preventDefault();
 
