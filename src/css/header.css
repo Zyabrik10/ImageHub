@@ -2,27 +2,26 @@
     padding: 20px 0;
 }
 
-.header-container{
+.header-content{
     display: flex;
     align-items: center;
 }
 
 .header-logo{
-        margin-right: 70px;
+    margin-right: 70px;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 600px){
     .header-logo{
         margin-right: auto;
     }
 }
 
-
 .header-form{
     display: none;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 600px){
     .header-form{
         display: flex;
     }

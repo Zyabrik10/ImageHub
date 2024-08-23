@@ -29,6 +29,7 @@ button {
   font-style: inherit;
   line-height: inherit;
   word-spacing: inherit;
+  cursor: pointer;
 }
 
 img {

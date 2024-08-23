@@ -1,114 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ImageHub</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImageHub</title>
+  
+  <!-- Normolize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" />
 
-    <!-- Normolize -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" />
+  <!-- Main styles -->
+  <link rel="stylesheet" href="./css/index.css">
 
-    <!-- notiflix -->
-    <script src="
-https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
-"></script>
-    <link href="
-https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css
-"
-      rel="stylesheet"
-    />
+  <!-- Lightbox styles -->
+  <link rel="stylesheet" href="./js/Lightbox/css/modal.css">
+</head>
+<body>
+  <main>
+    <div class="mix-header-hero-container container">
+      <header class="header">
+        <div class="header-content">
+          <a class="header-logo logo" href="/">
+            <span>ImageHub</span>
+            <span class="desc">by @Zyabrik10</span>
+          </a>
+  
+          <form class="search-form header-form">
+            <input class="search-form-input" autocomplete="off" type="text" name="query"
+              placeholder="Search images..." />
+            <button class="search-form-button" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </header>
 
-    <!-- lightbox -->
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.13.0/simple-lightbox.min.css"
-      integrity="sha512-74F0rBF7EW+3OTwz2fa2b9sGBEPSe4orL76WxHMnuVtlYF9h2+WiycMvMWn+nC0SZ5sNcIzhbBHiNneZ6f8ZFQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <!-- throttle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
-      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-
-    <link rel="stylesheet" href="./css/index.css" />
-  </head>
-
-  <body>
-    <main>
-      <div class="hero-header container">
-        <header class="header">
-          <div class="header-container">
-            <a class="header-logo logo" href="/">
-              <span>ImageHub</span>
-              <span class="desc">by @Zyabrik10</span>
-            </a>
-
-            <form class="search-form header-form" id="search-form">
-              <input class="search-form-input" autocomplete="off" type="text" name="searchInput" placeholder="Search images..." />
-              <button type="submit" class="search-form-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-                  />
-                </svg>
-              </button>
-            </form>
-          </div>
-          </header>
-        <section class="hero">
-          <div class="container">
-            <h1 class="hero-title text-center">
-              Explore different images <br />
-              with user-friendly interface
-            </h1>
-            <p class="hero-text text-center">
-              ImageHub is a web application that allows you to search for images
-              using the Pixabay API. Just enter your search query and click the
-              "Search" button to see the results. Enjoy exploring beautiful
-              images!
-            </p>
-            <a href="#image-search" class="hero-button">Explore now!</a>
-          </div>
-          <div class="hero-slider"></div>
-        </section>
-      </div>
-      <section class="main-slider-section" id="image-search">
-        <div class="container">
-          <div class="main-slider-section-block">
-            <h2>Serach images</h2>
-            <form class="search-form" id="search-form">
-              <input class="search-form-input" autocomplete="off" type="text" name="searchInput" placeholder="Search images..." />
-              <button type="submit" class="search-form-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-                  />
-                </svg>
-              </button>
-            </form>
-          </div>
-          <div class="gallery flex-container"></div>
+      <section class="hero">
+          <h1 class="hero-title">
+            Explore different images <br />
+            with user-friendly interface
+          </h1>
+          <p class="hero-text">
+            ImageHub is a web application that allows you to search for images
+            using the Pixabay API. Just enter your search query and click the
+            "Search" button to see the results. Enjoy exploring beautiful
+            images!
+          </p>
+          <a class="hero-button" href="#image-collection">Explore now!</a>
         </div>
       </section>
-    </main>
+    </div>
+    <section class="image-collection" id="image-collection">
+      <div class="container">
+        <div class="image-collection-block">
+          <h2>Serach images</h2>
+          <form class="search-form" id="search-form">
+            <input class="search-form-input" autocomplete="off" type="text" name="query"
+              placeholder="Search images..." />
+            <button type="submit" class="search-form-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="image-collection-list flex-container"></div>
+      </div>
+    </section>
+  </main>
+  
+  <a class="anchor" href="#image-collection">&uarr;</a>
 
-    <a class="anchor" href="#image-search">&uarr;</a>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.13.0/simple-lightbox.min.js"
-      integrity="sha512-va85zLd+1szc8k3CyJ26pBSluqH+c3H+SOf4cBWhpHFU3ZI331gE6nqLUIm0kd1e0HcZq5YYwdHuSed8IhACAA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="./index.js" type="module"></script>
-  </body>
+  <script src="./index.js" type="module"></script>
+</body>
 </html>

@@ -1,0 +1,100 @@
+.lightbox-modal{
+    --size: 1.85rem;
+    --field-size: calc(var(--size) * 1.5);
+    --offset: 0.625rem;
+    --button-controll-size: 4.375rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background-color: rgba(0, 0, 0 ,0.8);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 var(--offset);
+}
+
+.lightbox-modal.active{
+    display: flex;
+}
+
+.lightbox-modal-close-button{    
+    font-size: var(--size);
+    
+    width: var(--field-size);
+    height: var(--field-size);
+
+    position: absolute;
+
+    top: var(--offset);
+    right: var(--offset);
+
+    font-weight: bold;
+    color: white;
+
+    cursor: pointer;
+
+    background: transparent;
+}
+
+.lightbox-modal-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-modal-q-info{
+    position: absolute;
+    top: var(--offset);
+    left: var(--offset);
+
+    color: white;
+    font-size: 1.2rem;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.lightbox-modal-img{
+    width: 75%;
+    height: 85%;
+}
+
+.lightbox-controlls{
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    transform: translateY(-50%);
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.lightbox-controll-button{
+    border: none;
+    font-size: 3rem;
+    font-weight: bold;
+    
+    
+    width: var(--button-controll-size);
+    height: calc(var(--button-controll-size) * 4);
+
+    color: white;
+    background: rgba(220, 220, 220, 0.2);
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-controll-button:hover{
+    opacity: 1;
+}
