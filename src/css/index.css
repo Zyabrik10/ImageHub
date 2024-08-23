@@ -1,7 +1,75 @@
 @import url("./variables.css");
 @import url("./reset-normolize.css");
+@import url("./flex-containers.css");
 @import url("./global.css");
 @import url("./search-form.css");
 @import url("./header.css");
+@import url("./hero-head.css");
 @import url("./hero.css");
-@import url("./image-collection.css");
+@import url("./main-slider-section.css");
+@import url("./gallery.css");
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--third-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.anchor{
+  position: fixed;
+
+
+  --size: 50px;
+
+  width: var(--size);
+  height: var(--size);
+
+  top: 90%;
+  right: 5%;
+
+  transform: translateX(200%) scale(0);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 100%;
+  background-color: var(--third-color);
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  opacity: 0;
+
+  transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.5s cubic-bezier(.76,.04,.44,1.57);
+}
+
+.anchor.active{
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+.anchor:hover,
+.anchor:focus{
+  background-color: var(--secondary-color);
+  text-decoration: none;
+}
