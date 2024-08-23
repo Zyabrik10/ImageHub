@@ -1,20 +1,22 @@
 import { imageAPI, lightbox, queryAPIConfig } from "../config";
 
-export default function renderBackground(imageURL) {
-  const heroHeader = document.querySelector(".mix-header-hero-container");
+function renderBackground(imageURL) {
+  const heroHeader = document.querySelector('.mix-header-hero-container');
 
-  const color = "rgba(12,12,0,0.2)";
+  const color = 'rgba(12,12,0,0.2)';
   const startProc = 10;
 
-  heroHeader.style.background = "var(--primary-color)";
-  
+  heroHeader.style.background = 'var(--primary-color)';
+
   if (innerWidth < 340) {
     heroHeader.style.background = `url(${imageURL})`;
   } else {
-    heroHeader.style.background = `linear-gradient(90deg, var(--primary-color) 0%, ${color} ${startProc}%, ${color} ${100 - startProc}%, var(--primary-color) 100%), url(${imageURL})`;
+    heroHeader.style.background = `linear-gradient(90deg, var(--primary-color) 0%, ${color} ${startProc}%, ${color} ${
+      100 - startProc
+    }%, var(--primary-color) 100%), url(${imageURL})`;
   }
 
-  heroHeader.style.backgroundSize = "cover";
+  heroHeader.style.backgroundSize = 'cover';
 }
 
 export default class SearchForm {
