@@ -1,8 +1,6 @@
 import { imageAPI, lightbox, queryAPIConfig, searchForm } from "./js/config";
 import _ from "lodash";
 
-// Main function
-
 window.addEventListener("load", async () => {
   try {
     lightbox.init(".image-collection-list");
