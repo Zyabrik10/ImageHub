@@ -3,13 +3,13 @@ import _ from "lodash";
 
 window.addEventListener("load", async () => {
   try {
-    lightbox.init(".image-collection-list");
-    searchForm.init(".search-form");
+    lightbox.init('.image-collection-list');
+    searchForm.init('.search-form');
     searchForm.findAndRender(queryAPIConfig.query);
 
-    const anchor = document.querySelector(".anchor");
+    const anchor = document.querySelector('.anchor');
     const imageColletionTop =
-          lightbox.lightboxContainer.container.getBoundingClientRect().top;
+      lightbox.lightboxContainer.container.getBoundingClientRect().top;
 
     window.addEventListener(
       "scroll",

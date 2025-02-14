@@ -1,4 +1,4 @@
-import { imageAPI, lightbox, queryAPIConfig } from "../config";
+import { imageAPI, lightbox, queryAPIConfig } from '../config';
 
 function renderBackground(imageURL) {
   const heroHeader = document.querySelector('.mix-header-hero-container');
@@ -23,17 +23,17 @@ export default class SearchForm {
   init(formSelector) {
     this.forms = document.querySelectorAll(formSelector);
 
-    this.forms.forEach((form) => {
-      form.addEventListener("submit", this.onSubmit.bind(this));
+    this.forms.forEach(form => {
+      form.addEventListener('submit', this.onSubmit.bind(this));
     });
   }
 
   async findAndRender(query) {
     const response = await imageAPI.fetch({
       query,
-      orientation: "horizontal",
+      orientation: 'horizontal',
       per_page: 20,
-      category: "nature",
+      category: 'nature',
     });
 
     const images = response.data.hits.map(({ id, largeImageURL, tags }) => {
